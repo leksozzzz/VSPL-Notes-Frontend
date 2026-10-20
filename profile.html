@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль — VSPL Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <a href="dashboard.html" class="logo">VSPL Notes</a>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="side-link">Мои заметки</a>
+            <a href="categories.html" class="side-link">Категории</a>
+            <a href="profile.html" class="side-link active">Профиль</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="index.html" class="side-link">На главную</a>
+            <a href="index.html" class="logout-link" title="Выйти">Выйти ↗</a>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div>
+                <p class="topbar-caption">АККАУНТ</p>
+                <h1>Мой профиль</h1>
+                <p>Информация о пользователе и настройки приложения.</p>
+            </div>
+        </header>
+
+        <section class="profile-card">
+            <div class="profile-avatar" id="profile-avatar">U</div>
+
+            <div class="profile-info">
+                <h2 id="profile-name">Пользователь</h2>
+                <p id="profile-email">user@example.com</p>
+                <span class="profile-status">Аккаунт VSPL Notes</span>
+            </div>
+        </section>
+
+        <section class="profile-settings">
+            <h2>Личные данные</h2>
+
+            <form id="profile-form">
+                <label for="user-name">Имя</label>
+                <input
+                    type="text"
+                    id="user-name"
+                    placeholder="Введите имя"
+                    required
+                >
+
+                <label for="user-email">Электронная почта</label>
+                <input
+                    type="email"
+                    id="user-email"
+                    placeholder="Введите почту"
+                    required
+                >
+
+                <button type="submit" class="primary-button">
+                    Сохранить изменения
+                </button>
+
+                <p id="profile-message"></p>
+            </form>
+        </section>
+
+        <section class="profile-settings">
+            <h2>Внешний вид</h2>
+
+            <div class="setting-row">
+                <div>
+                    <strong>Тёмная тема</strong>
+                    <p>Изменить оформление приложения.</p>
+                </div>
+
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span>Включить</span>
+                </label>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

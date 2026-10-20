@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Категории — VSPL Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <a href="dashboard.html" class="logo">
+            <span class="logo-icon">▤</span>
+            VSPL Notes
+        </a>
+
+        <a href="dashboard.html" class="btn btn-outline"
+           style="text-align:center; margin-bottom:30px;">
+            ← К заметкам
+        </a>
+
+        <p class="sidebar-heading">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+
+        <nav class="sidebar-nav">
+            <a class="side-link" href="dashboard.html"
+               style="text-decoration:none;">
+                <span>▤</span> Мои заметки
+            </a>
+            <a class="side-link active" href="categories.html"
+               style="text-decoration:none;">
+                <span>▦</span> Категории
+            </a>
+            <a class="side-link" href="profile.html" style="text-decoration:none;">
+                <span>⚙</span> Профиль
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="user-avatar">U</div>
+            <div class="user-info">
+                <strong>Пользователь</strong>
+                <span>VSPL Notes</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div>
+                <p class="topbar-caption">ОРГАНИЗАЦИЯ</p>
+                <h1>Категории</h1>
+            </div>
+
+            <a href="dashboard.html"
+               class="btn btn-primary"
+               style="text-decoration:none;">
+                Мои заметки →
+            </a>
+        </header>
+
+        <section class="welcome-banner">
+            <div>
+                <p class="welcome-label">VSPL NOTES / CATEGORIES</p>
+                <h2>Наведи порядок в идеях.</h2>
+                <p>Разделяй записи по темам, чтобы быстро находить нужное.</p>
+            </div>
+            <div class="welcome-decoration">▦</div>
+        </section>
+
+        <section class="category-page-grid" id="category-page-grid"></section>
+
+        <p class="category-page-note">
+            Категории помогают распределять заметки по темам.
+        </p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

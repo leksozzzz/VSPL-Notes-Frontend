@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+    <header class="header">
+        <a href="index.html" class="logo auth-logo">
+            <span class="logo-icon">▤</span>
+            VSPL Notes
+        </a>
+        <a href="login.html" class="auth-link">Уже есть аккаунт? Войти</a>
+    </header>
+
+    <main class="auth-container">
+        <form class="auth-card" id="register-form">
+            <div class="auth-icon">▤</div>
+            <h1>Создать аккаунт</h1>
+            <p class="auth-description">
+                Зарегистрируйся, чтобы хранить свои заметки в одном месте.
+            </p>
+
+            <label for="register-name">Имя пользователя</label>
+            <input type="text" id="register-name" placeholder="Как тебя зовут" required>
+
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" placeholder="example@mail.com" required>
+
+            <label for="register-password">Пароль</label>
+            <input type="password" id="register-password" placeholder="Минимум 8 символов" minlength="8" required>
+
+            <label for="register-confirm">Повтори пароль</label>
+            <input type="password" id="register-confirm" placeholder="Повтори пароль" minlength="8" required>
+
+            <p class="auth-message" id="register-message"></p>
+
+            <button type="submit" class="btn btn-primary auth-submit">
+                Зарегистрироваться
+            </button>
+
+            <p class="auth-footer">
+                Уже зарегистрирован?
+                <a href="login.html">Войти</a>
+            </p>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

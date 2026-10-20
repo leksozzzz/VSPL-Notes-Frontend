@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+    <header class="header">
+        <a href="index.html" class="logo auth-logo">
+            <span class="logo-icon">▤</span>
+            VSPL
+        </a>
+        <a href="register.html" class="auth-link">Нет аккаунта? Регистрация</a>
+    </header>
+
+    <main class="auth-container">
+        <form class="auth-card" id="login-form">
+            <div class="auth-icon">▤</div>
+            <h1>С возвращением!</h1>
+            <p class="auth-description">
+                Войди в аккаунт, чтобы продолжить работу с заметками.
+            </p>
+
+            <label for="login-email">Имя пользователя или email</label>
+            <input type="text" id="login-email" placeholder="Имя пользователя или email" required>
+
+            <label for="login-password">Пароль</label>
+            <input type="password" id="login-password" placeholder="Введи пароль" required>
+
+            <p class="auth-message" id="login-message"></p>
+
+            <button type="submit" class="btn btn-primary auth-submit">
+                Войти
+            </button>
+
+            <p class="auth-footer">
+                Ещё нет аккаунта?
+                <a href="register.html">Зарегистрироваться</a>
+            </p>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
