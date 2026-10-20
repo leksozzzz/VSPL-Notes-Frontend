@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас — VSPL Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="about">
+
+<div class="app">
+    <aside class="sidebar">
+        <a href="dashboard.html" class="logo" data-logo>
+            <span class="logo-icon">▤</span> VSPL Notes
+        </a>
+
+        <nav class="sidebar-nav" aria-label="Основное меню">
+            <a class="nav-link" href="dashboard.html" data-view="all">
+                <span>Мои заметки</span>
+                <span class="nav-count" id="count-all"></span>
+            </a>
+
+            <a class="nav-link" href="dashboard.html?view=favorites" data-view="favorites">
+                <span>Избранное</span>
+                <span class="nav-count" id="count-favorites"></span>
+            </a>
+
+            <a class="nav-link" href="categories.html">
+                <span>Категории</span>
+            </a>
+
+            <a class="nav-link" href="dashboard.html?view=trash" data-view="trash">
+                <span>Корзина</span>
+                <span class="nav-count" id="count-trash"></span>
+            </a>
+
+            <a class="nav-link" href="profile.html">
+                <span>Профиль</span>
+            </a>
+
+            <a class="nav-link" href="about.html" aria-current="page">
+                <span>О нас</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-user">
+            <div class="user-avatar" id="user-avatar">U</div>
+            <span class="user-name" id="user-name-label">Пользователь</span>
+
+            <button type="button"
+                    class="logout-btn"
+                    data-logout
+                    title="Выйти"
+                    aria-label="Выйти">
+                ↪
+            </button>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="page-head">
+            <div>
+                <h1>О нас</h1>
+                <p>Знакомство с командой и проектом VSPL Notes</p>
+            </div>
+        </header>
+
+        <section class="panel panel-wide">
+            <h2>О проекте</h2>
+
+            <p>
+                <strong>VSPL Notes</strong>  это веб-приложение для создания,
+                хранения и управления личными заметками.
+                Мы разработали его, чтобы пользователям было проще
+                записывать идеи, организовывать задачи и хранить важную информацию
+                в одном месте.
+            </p>
+
+            <p>
+                Проект создан небольшой командой из четырёх человек
+                в рамках учебной работы. Каждый участник отвечал
+                за своё направление: разработку интерфейса, серверную часть,
+                тестирование или организацию работы.
+            </p>
+        </section>
+
+        <section class="panel panel-wide">
+            <h2>Наша команда</h2>
+
+            <p>
+                За VSPL Notes стоит команда из четырёх участников,
+                каждый из которых внёс свой вклад в разработку.
+            </p>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="user-avatar">СП</div>
+                    <strong>Сергеева Полина</strong>
+                    <span>Frontend-разработчик</span>
+                    <p>
+                        Отвечала за пользовательский интерфейс,
+                        структуру страниц и визуальное оформление сайта.
+                    </p>
+                </div>
+
+                <div class="team-card">
+                    <div class="user-avatar">ЧЛ</div>
+                    <strong>Чежия Лексо</strong>
+                    <span>Backend-разработчик</span>
+                    <p>
+                        Отвечал за серверную часть приложения,
+                        обработку запросов и работу с данными.
+                    </p>
+                </div>
+
+                <div class="team-card">
+                    <div class="user-avatar">ПС</div>
+                    <strong>Прохоров Степан</strong>
+                    <span>Тестировщик</span>
+                    <p>
+                        Отвечал за проверку функций приложения,
+                        поиск ошибок и тестирование работоспособности.
+                    </p>
+                </div>
+
+                <div class="team-card">
+                    <div class="user-avatar">ПИ</div>
+                    <strong>Парнюк Иван</strong>
+                    <span>Менеджер проекта</span>
+                    <p>
+                        Координировал работу команды,
+                        следил за организацией задач и ходом разработки.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel panel-wide">
+            <h2>Планы на будущее</h2>
+
+            <p>
+                VSPL Notes — развивающийся проект.
+                В дальнейшем мы планируем дорабатывать приложение,
+                улучшать существующие функции, исправлять ошибки
+                и, возможно, добавлять новые возможности.
+            </p>
+
+            <p>
+                Мы понимаем, что у проекта ещё есть потенциал для развития,
+                поэтому будем рады обратной связи и предложениям
+                по улучшению приложения.
+            </p>
+        </section>
+
+        <section class="panel panel-wide">
+            <h2>Поддержать проект</h2>
+
+            <p>
+                Если вам нравится VSPL Notes и вы хотите поддержать
+                дальнейшую разработку, вы можете поддержать нашу команду
+                донатом.
+            </p>
+
+            <p>
+                Любая поддержка поможет нам уделять больше времени
+                развитию проекта и реализации новых идей.
+            </p>
+
+            <!--
+            Когда появится ссылка для донатов, добавьте сюда кнопку.
+            Не указывайте выдуманную ссылку.
+            -->
+            <p>
+                <em>Информация о способах поддержки появится позже.</em>
+            </p>
+        </section>
+
+        <footer class="about-footer">
+            <p>VSPL Notes © 2026</p>
+            <p>Создано небольшой командой с желанием развиваться.</p>
+        </footer>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,73 +6,57 @@
     <title>Категории — VSPL Notes</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="dashboard-page">
+<body data-page="categories">
 
+<div class="app">
     <aside class="sidebar">
-        <a href="dashboard.html" class="logo">
-            <span class="logo-icon">▤</span>
-            VSPL Notes
+        <a href="dashboard.html" class="logo" data-logo>
+            <span class="logo-icon">▤</span>VSPL Notes
         </a>
 
-        <a href="dashboard.html" class="btn btn-outline"
-           style="text-align:center; margin-bottom:30px;">
-            ← К заметкам
-        </a>
-
-        <p class="sidebar-heading">РАБОЧЕЕ ПРОСТРАНСТВО</p>
-
-        <nav class="sidebar-nav">
-            <a class="side-link" href="dashboard.html"
-               style="text-decoration:none;">
-                <span>▤</span> Мои заметки
+        <nav class="sidebar-nav" aria-label="Основное меню">
+            <a class="nav-link" href="dashboard.html" data-view="all">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Мои заметки</span><span class="nav-count" id="count-all"></span>
             </a>
-            <a class="side-link active" href="categories.html"
-               style="text-decoration:none;">
-                <span>▦</span> Категории
+            <a class="nav-link" href="dashboard.html?view=favorites" data-view="favorites">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2.5 14.9 8.9 22 9.6 16.7 14.3 18.2 21.3 12 17.7 5.8 21.3 7.3 14.3 2 9.6 9.1 8.9"/></svg><span>Избранное</span><span class="nav-count" id="count-favorites"></span>
             </a>
-            <a class="side-link" href="profile.html" style="text-decoration:none;">
-                <span>⚙</span> Профиль
+            <a class="nav-link" href="categories.html" aria-current="page">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Категории</span>
+            </a>
+            <a class="nav-link" href="dashboard.html?view=trash" data-view="trash">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></svg><span>Корзина</span><span class="nav-count" id="count-trash"></span>
+            </a>
+            <a class="nav-link" href="profile.html">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Профиль</span>
+            </a>
+            <a class="nav-link" href="about.html">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>О нас</span>
             </a>
         </nav>
 
-        <div class="sidebar-bottom">
-            <div class="user-avatar">U</div>
-            <div class="user-info">
-                <strong>Пользователь</strong>
-                <span>VSPL Notes</span>
-            </div>
+        <div class="sidebar-user">
+            <div class="user-avatar" id="user-avatar">U</div>
+            <span class="user-name" id="user-name-label">Пользователь</span>
+            <button type="button" class="logout-btn" data-logout title="Выйти" aria-label="Выйти">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M16 8l4 4-4 4M20 12H9"/></svg>
+            </button>
         </div>
     </aside>
 
-    <main class="dashboard-main">
-        <header class="dashboard-topbar">
+    <main class="main">
+        <header class="page-head">
             <div>
-                <p class="topbar-caption">ОРГАНИЗАЦИЯ</p>
                 <h1>Категории</h1>
+                <p>Выберите категорию, чтобы увидеть её заметки</p>
             </div>
-
-            <a href="dashboard.html"
-               class="btn btn-primary"
-               style="text-decoration:none;">
-                Мои заметки →
-            </a>
         </header>
 
-        <section class="welcome-banner">
-            <div>
-                <p class="welcome-label">VSPL NOTES / CATEGORIES</p>
-                <h2>Наведи порядок в идеях.</h2>
-                <p>Разделяй записи по темам, чтобы быстро находить нужное.</p>
-            </div>
-            <div class="welcome-decoration">▦</div>
+        <section class="category-grid" id="category-page-grid">
+            <p class="loading-message">Загружаем категории...</p>
         </section>
-
-        <section class="category-page-grid" id="category-page-grid"></section>
-
-        <p class="category-page-note">
-            Категории помогают распределять заметки по темам.
-        </p>
     </main>
+</div>
 
     <script src="script.js"></script>
 </body>

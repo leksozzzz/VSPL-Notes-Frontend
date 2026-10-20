@@ -3,156 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>VSPL Notes</title>
-
+    <title>VSPL Notes — вход</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<body data-page="auth" class="auth-page">
 
-<body>
-
-    <header class="header">
-        <div class="logo">
-            <span class="logo-icon">▤</span>
-            VSPL Notes
-        </div>
-
-        <nav class="nav">
-            <a href="index.html">Главная</a>
-            <a href="#features">Возможности</a>
-            <a href="#features">О проекте</a>
-        </nav>
-
-        <div class="header-buttons">
-            <button class="btn btn-outline" type="button">Войти</button>
-            <button class="btn btn-primary" type="button">Регистрация</button>
-        </div>
+    <header class="auth-header">
+        <a href="index.html" class="logo" data-logo>
+            <span class="logo-icon">▤</span>VSPL Notes
+        </a>
     </header>
 
+    <main class="auth-main">
+        <div class="auth-card">
 
-    <main>
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <div class="badge">
-                    Система заметок
-                </div>
-
-                <h1>
-                    Все заметки<br>
-                    в одном месте
-                </h1>
-
-                <p>
-                    Создавай, редактируй и организовывай
-                    свои идеи, планы и задачи.
-                    Удобно, быстро и безопасно.
-                </p>
-
-                <div class="hero-buttons">
-                    <button type="button" class="btn btn-primary btn-large">
-                        Начать бесплатно
-                    </button>
-
-                    <button type="button" class="btn btn-outline btn-large">
-                        Узнать больше
-                    </button>
-                </div>
-
+            <div class="auth-tabs" role="tablist">
+                <button type="button" class="auth-tab" role="tab" id="tab-login"
+                        data-tab="login" aria-selected="true">Вход</button>
+                <button type="button" class="auth-tab" role="tab" id="tab-register"
+                        data-tab="register" aria-selected="false">Регистрация</button>
             </div>
 
-            <div class="hero-card">
+            <!-- Форма входа -->
+            <form id="login-form" novalidate>
+                <h1>С возвращением</h1>
+                <p class="auth-lead">Войдите, чтобы открыть свои заметки.</p>
 
-                <div class="mini-header">
-                    <span>VSPL Notes</span>
-                    <span>● ● ●</span>
-                </div>
+                <label class="field">
+                    <span>Имя пользователя или email</span>
+                    <input type="text" id="login-username" autocomplete="username" required>
+                </label>
 
-                <div class="mini-search">
-                    🔍 Поиск заметок...
-                </div>
+                <label class="field">
+                    <span>Пароль</span>
+                    <input type="password" id="login-password" autocomplete="current-password" required>
+                </label>
 
-                <div class="mini-notes">
+                <p class="form-message" id="login-message" role="status"></p>
 
-                    <div class="mini-note">
-                        <strong>План на неделю</strong>
-                        <span>Сделать проект...</span>
-                    </div>
+                <button type="submit" class="btn btn-primary auth-submit">Войти</button>
+            </form>
 
-                    <div class="mini-note">
-                        <strong>Идеи проекта</strong>
-                        <span>Новые идеи...</span>
-                    </div>
+            <!-- Форма регистрации -->
+            <form id="register-form" novalidate hidden>
+                <h1>Создать аккаунт</h1>
+                <p class="auth-lead">Это займёт меньше минуты.</p>
 
-                    <div class="mini-note">
-                        <strong>Учёба</strong>
-                        <span>Подготовиться...</span>
-                    </div>
+                <label class="field">
+                    <span>Имя пользователя</span>
+                    <input type="text" id="register-name" autocomplete="username" maxlength="80" required>
+                </label>
 
-                </div>
+                <label class="field">
+                    <span>Email</span>
+                    <input type="email" id="register-email" autocomplete="email" required>
+                </label>
 
-            </div>
+                <label class="field">
+                    <span>Пароль (минимум 8 символов)</span>
+                    <input type="password" id="register-password" autocomplete="new-password" required>
+                </label>
 
-        </section>
+                <label class="field">
+                    <span>Повторите пароль</span>
+                    <input type="password" id="register-confirm" autocomplete="new-password" required>
+                </label>
 
+                <p class="form-message" id="register-message" role="status"></p>
 
-        <section class="features" id="features">
+                <button type="submit" class="btn btn-primary auth-submit">Зарегистрироваться</button>
+            </form>
 
-            <div class="feature">
-                <div class="feature-icon">✎</div>
-
-                <h3>Удобные заметки</h3>
-
-                <p>
-                    Создание и редактирование
-                    заметок в одном месте.
-                </p>
-            </div>
-
-
-            <div class="feature">
-                <div class="feature-icon">▤</div>
-
-                <h3>Категории</h3>
-
-                <p>
-                    Организовывай заметки
-                    по нужным категориям.
-                </p>
-            </div>
-
-
-            <div class="feature">
-                <div class="feature-icon">⌕</div>
-
-                <h3>Быстрый поиск</h3>
-
-                <p>
-                    Находи нужную заметку
-                    за несколько секунд.
-                </p>
-            </div>
-
-
-            <div class="feature">
-                <div class="feature-icon">✓</div>
-
-                <h3>Простота</h3>
-
-                <p>
-                    Минималистичный интерфейс
-                    без лишних элементов.
-                </p>
-            </div>
-
-        </section>
-
+        </div>
     </main>
 
-
     <script src="script.js"></script>
-
 </body>
 </html>

@@ -1,208 +1,148 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мои заметки — VSPL</title>
+    <title>Мои заметки — VSPL Notes</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="dashboard-page">
+<body data-page="dashboard">
 
+<div class="app">
     <aside class="sidebar">
-        <a href="index.html" class="logo">
-            <span class="logo-icon">▤</span>
-            VSPL Notes
+        <a href="dashboard.html" class="logo" data-logo>
+            <span class="logo-icon">🌓</span>VSPL Notes
         </a>
 
-        <button class="btn btn-primary sidebar-add" id="add-note">
-            <span>＋</span> Новая заметка
-        </button>
-
-        <p class="sidebar-heading">РАБОЧЕЕ ПРОСТРАНСТВО</p>
-
-        <nav class="sidebar-nav">
-            <button class="side-link active" data-view="all">
-                <span>▤</span> Мои заметки
-                <span class="side-count" id="notes-count">0</span>
-            </button>
-            <button class="side-link" data-view="favorites">
-                <span>☆</span> Избранное
-            </button>
-            <button class="side-link" data-view="categories">
-                <span>▦</span> Категории
-            </button>
-            <a class="side-link" href="profile.html" style="text-decoration:none;">
-                <span>⚙</span> Профиль
+        <nav class="sidebar-nav" aria-label="Основное меню">
+            <a class="nav-link" href="dashboard.html" data-view="all" aria-current="page">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Мои заметки</span><span class="nav-count" id="count-all"></span>
             </a>
-            <button class="side-link" data-view="trash">
-                <span>♲</span> Корзина
-            </button>
+            <a class="nav-link" href="dashboard.html?view=favorites" data-view="favorites">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2.5 14.9 8.9 22 9.6 16.7 14.3 18.2 21.3 12 17.7 5.8 21.3 7.3 14.3 2 9.6 9.1 8.9"/></svg><span>Избранное</span><span class="nav-count" id="count-favorites"></span>
+            </a>
+            <a class="nav-link" href="categories.html">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Категории</span>
+            </a>
+            <a class="nav-link" href="dashboard.html?view=trash" data-view="trash">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></svg><span>Корзина</span><span class="nav-count" id="count-trash"></span>
+            </a>
+            <a class="nav-link" href="profile.html">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Профиль</span>
+            </a>
+            <a class="nav-link" href="about.html">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>О нас</span>
+            </a>
         </nav>
 
-        <div class="sidebar-bottom">
-            <div class="user-avatar">U</div>
-            <div class="user-info">
-                <strong>Пользователь</strong>
-                <span>Мой аккаунт</span>
-            </div>
-            <a href="index.html" class="logout-link" title="Выйти">↗</a>
+        <div class="sidebar-user">
+            <div class="user-avatar" id="user-avatar">U</div>
+            <span class="user-name" id="user-name-label">Пользователь</span>
+            <button type="button" class="logout-btn" data-logout title="Выйти" aria-label="Выйти">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M16 8l4 4-4 4M20 12H9"/></svg>
+            </button>
         </div>
     </aside>
 
-    <main class="dashboard-main">
-
-        <header class="dashboard-topbar">
+    <main class="main">
+        <header class="page-head">
             <div>
-                <p class="topbar-caption">ТВОЁ ПРОСТРАНСТВО</p>
                 <h1 id="page-title">Мои заметки</h1>
+                <p id="page-subtitle">Все ваши записи в одном месте</p>
             </div>
-
-            <button class="btn btn-primary topbar-add" id="add-note-top">
-                ＋ Создать заметку
-            </button>
+            <div>
+                <button type="button" class="btn btn-primary" id="add-note">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Новая заметка
+                </button>
+                <button type="button" class="btn btn-danger" id="clear-trash" hidden>
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></svg> Очистить корзину
+                </button>
+            </div>
         </header>
 
-        <section class="welcome-banner">
-            <div>
-                <p class="welcome-label">VSPL NOTES / WORKSPACE</p>
-                <h2>Все идеи под контролем.</h2>
-                <p>Записывай важное, планируй дела и возвращайся к своим идеям.</p>
-            </div>
-            <div class="welcome-decoration">N.</div>
-        </section>
+        <div class="toolbar">
+            <label class="search-box">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+                <input type="search" id="note-search" placeholder="Поиск по заметкам" aria-label="Поиск по заметкам">
+            </label>
 
-        <section class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon blue-icon">▤</div>
-                <span>Всего заметок</span>
-                <strong id="stat-total">0</strong>
-                <small>Твои записи</small>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon yellow-icon">☆</div>
-                <span>Избранное</span>
-                <strong id="stat-favorites">0</strong>
-                <small>Важные заметки</small>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon green-icon">▦</div>
-                <span>Категории</span>
-                <strong id="stat-categories">4</strong>
-                <small>Для организации</small>
-            </div>
-        </section>
-
-        <section class="notes-section">
-
-            <div class="notes-toolbar">
-                <div>
-                    <h2 id="section-title">Все заметки</h2>
-                    <p id="section-description">Твои записи в одном месте</p>
-                </div>
-
-                <div class="notes-controls">
-                    <label class="search-box">
-                        <span>⌕</span>
-                        <input type="search" id="note-search"
-                               placeholder="Поиск заметок...">
-                    </label>
-
-                    <select id="category-filter" aria-label="Фильтр по категории">
-                        <option value="all">Все категории</option>
-                        <option value="Учёба">Учёба</option>
-                        <option value="Работа">Работа</option>
-                        <option value="Личное">Личное</option>
-                        <option value="Идеи">Идеи</option>
-                    </select>
-
-                    <select id="sort-notes" aria-label="Сортировка заметок">
-                        <option value="updated">Сначала новые</option>
-                        <option value="created">По дате создания</option>
-                        <option value="title">По названию</option>
-                        <option value="manual">Вручную</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="category-shortcuts">
-                <button class="category-chip selected" data-category="all">
-                    Все заметки
-                </button>
-                <button class="category-chip" data-category="Учёба">
-                    <span class="chip-dot study-dot"></span> Учёба
-                </button>
-                <button class="category-chip" data-category="Работа">
-                    <span class="chip-dot work-dot"></span> Работа
-                </button>
-                <button class="category-chip" data-category="Личное">
-                    <span class="chip-dot personal-dot"></span> Личное
-                </button>
-                <button class="category-chip" data-category="Идеи">
-                    <span class="chip-dot ideas-dot"></span> Идеи
-                </button>
-            </div>
-
-            <div class="notes-grid" id="notes-grid"></div>
-
-            <div class="empty-state" id="empty-state" hidden>
-                <div class="empty-icon">▤</div>
-                <h3>Здесь пока пусто</h3>
-                <p>Создай заметку или измени параметры поиска.</p>
-                <button class="btn btn-primary" id="empty-add">
-                    ＋ Создать заметку
-                </button>
-            </div>
-
-        </section>
-
-        <footer class="dashboard-footer">
-            <span>VSPL Notes</span>
-            <span>Твои идеи. Твой порядок.</span>
-        </footer>
-
-    </main>
-
-    <div class="modal-overlay" id="note-modal" hidden>
-        <form class="note-modal" id="note-form">
-            <div class="modal-header">
-                <div>
-                    <p class="topbar-caption">ТВОИ ЗАПИСИ</p>
-                    <h2 id="modal-title">Новая заметка</h2>
-                </div>
-                <button type="button" class="modal-close" id="close-modal"
-                        aria-label="Закрыть">×</button>
-            </div>
-
-            <label for="note-title">Название</label>
-            <input type="text" id="note-title"
-                   placeholder="Например, план на неделю" maxlength="120" required>
-
-            <label for="note-category">Категория</label>
-            <select id="note-category">
+            <select id="category-filter" aria-label="Категория">
+                <option value="all">Все категории</option>
                 <option value="Учёба">Учёба</option>
                 <option value="Работа">Работа</option>
                 <option value="Личное">Личное</option>
                 <option value="Идеи">Идеи</option>
             </select>
 
-            <label for="note-content">Содержание</label>
-            <textarea id="note-content" rows="8"
-                      placeholder="Запиши свою мысль..." maxlength="10000"></textarea>
+            <select id="sort-notes" aria-label="Сортировка">
+                <option value="updated">Недавно изменённые</option>
+                <option value="created">По дате создания</option>
+                <option value="title">По названию</option>
+                <option value="manual">Вручную</option>
+            </select>
+        </div>
 
-            <p class="form-error" id="note-error"></p>
+        <div class="notes-grid" id="notes-grid"></div>
+
+        <div class="empty-state" id="empty-state" hidden>
+            <h2 id="empty-title">Заметок пока нет</h2>
+            <p id="empty-text">Создайте первую заметку — она сохранится в вашем аккаунте.</p>
+            <button type="button" class="btn btn-primary" id="empty-add">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Создать заметку
+            </button>
+        </div>
+    </main>
+</div>
+
+    <!--«Ворота» для корзины: показываются, пока вы тянете заметку (на компьютере) -->
+    <div class="trash-gate" id="trash-gate" aria-hidden="true">
+        <div class="goal"><span class="goal-label">Забейте гол, чтоб выкинуть в корзину</span></div>
+    </div>
+
+    <!-- Окно создания и редактирования заметки -->
+    <div class="modal-overlay" id="note-modal" hidden>
+        <form class="modal" id="note-form">
+            <h2 id="modal-title">Новая заметка</h2>
+
+            <label class="field">
+                <span>Название</span>
+                <input type="text" id="note-title" maxlength="120" required>
+            </label>
+
+            <label class="field">
+                <span>Категория</span>
+                <select id="note-category">
+                    <option value="Учёба">Учёба</option>
+                    <option value="Работа">Работа</option>
+                    <option value="Личное">Личное</option>
+                    <option value="Идеи">Идеи</option>
+                </select>
+            </label>
+
+            <label class="field">
+                <span>Текст заметки</span>
+                <textarea id="note-content" maxlength="10000"></textarea>
+            </label>
+
+            <p class="form-message" id="note-error" role="alert"></p>
 
             <div class="modal-actions">
-                <button type="button" class="btn btn-outline" id="cancel-modal">
-                    Отмена
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    Сохранить заметку
-                </button>
+                <button type="button" class="btn btn-outline" id="cancel-modal">Отмена</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
             </div>
         </form>
+    </div>
+
+    <!-- Окно подтверждения (удаление навсегда, очистка корзины) -->
+    <div class="modal-overlay" id="confirm-modal" hidden>
+        <div class="modal modal-small" role="alertdialog" aria-labelledby="confirm-title">
+            <h2 id="confirm-title">Подтвердите действие</h2>
+            <p id="confirm-text"></p>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-outline" id="confirm-cancel">Отмена</button>
+                <button type="button" class="btn btn-danger" id="confirm-ok">Удалить</button>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
