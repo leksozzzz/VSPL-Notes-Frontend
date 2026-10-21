@@ -1265,3 +1265,15 @@ body.light-theme .note-card:hover {
     gap: 10px;
     margin-top: 16px;
 }
+
+.btn-primary {
+    background: #171d32;
+    color: #c4b5fd;
+    border: 1px solid #303954;
+}
+
+.btn-primary:hover {
+    background: #222a43;
+    border-color: #a99bff;
+    color: #ffffff;
+}
