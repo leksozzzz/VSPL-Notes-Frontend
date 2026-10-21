@@ -51,7 +51,7 @@
                 <p id="page-subtitle">Все ваши записи в одном месте</p>
             </div>
             <div>
-                <button type="button" class="btn btn-primary" id="add-note">
+                <button type="button" class="primary-btn" id="add-note">
                     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Новая заметка
                 </button>
                 <button type="button" class="btn btn-danger" id="clear-trash" hidden>
@@ -87,19 +87,17 @@
         <div class="empty-state" id="empty-state" hidden>
             <h2 id="empty-title">Заметок пока нет</h2>
             <p id="empty-text">Создайте первую заметку — она сохранится в вашем аккаунте.</p>
-            <button type="button" class="btn btn-primary" id="empty-add">
+            <button type="button" class="primary-btn" id="empty-add">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Создать заметку
             </button>
         </div>
     </main>
 </div>
 
-    <!--«Ворота» для корзины: показываются, пока вы тянете заметку (на компьютере) -->
     <div class="trash-gate" id="trash-gate" aria-hidden="true">
         <div class="goal"><span class="goal-label">Забейте гол, чтоб выкинуть в корзину</span></div>
     </div>
 
-    <!-- Окно создания и редактирования заметки -->
     <div class="modal-overlay" id="note-modal" hidden>
         <form class="modal" id="note-form">
             <h2 id="modal-title">Новая заметка</h2>
@@ -133,7 +131,6 @@
         </form>
     </div>
 
-    <!-- Окно подтверждения (удаление навсегда, очистка корзины) -->
     <div class="modal-overlay" id="confirm-modal" hidden>
         <div class="modal modal-small" role="alertdialog" aria-labelledby="confirm-title">
             <h2 id="confirm-title">Подтвердите действие</h2>
