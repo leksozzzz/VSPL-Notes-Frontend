@@ -393,6 +393,29 @@ textarea {
     border-top: 1px solid var(--border);
 }
 
+
+.sidebar-user-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-user-link:hover {
+    opacity: 0.8;
+}
+
+.sidebar-user-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+
 .user-avatar {
     display: flex;
     align-items: center;
