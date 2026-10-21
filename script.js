@@ -329,6 +329,50 @@ if (page === "dashboard" && getToken()) {
     let editingId = null;     // id редактируемой заметки (null — создаём новую)
     let draggedId = null;     // id заметки, которую сейчас тянут
 
+    // --- Загрузка категорий с сервера: GET /categories/ ---
+    async function loadCategories() {
+        try {
+            const categories = await apiRequest("/categories/");
+            const selectedFilter = categoryFilter.value;
+            const selectedCategory = noteCategory.value;
+
+            // Фильтр категорий
+            categoryFilter.innerHTML = '<option value="all">Все категории</option>';
+
+            // Категории в редакторе заметки
+            noteCategory.innerHTML = "";
+
+            categories.forEach(category => {
+                const name = category.name;
+
+                const filterOption = document.createElement("option");
+                filterOption.value = name;
+                filterOption.textContent = name;
+                categoryFilter.appendChild(filterOption);
+
+                const editorOption = document.createElement("option");
+                editorOption.value = name;
+                editorOption.textContent = name;
+                noteCategory.appendChild(editorOption);
+            });
+
+            // Сохраняем выбранные значения, если они ещё существуют
+            if ([...categoryFilter.options].some(option => option.value === selectedFilter)) {
+                categoryFilter.value = selectedFilter;
+            } else {
+                categoryFilter.value = "all";
+            }
+
+            if ([...noteCategory.options].some(option => option.value === selectedCategory)) {
+                noteCategory.value = selectedCategory;
+            } else {
+                noteCategory.value = "Личное";
+            }
+        } catch (error) {
+            console.error("Не удалось загрузить категории:", error);
+        }
+    }
+
     // --- Загрузка: GET /notes/ ---
     async function loadNotes() {
         grid.innerHTML = '<p class="loading-message">Загружаем заметки...</p>';
@@ -394,10 +438,16 @@ if (page === "dashboard" && getToken()) {
     }
 
     function noteCardHTML(note) {
+        // Показываем дату изменения только если она отличается от даты создания
+        const createdTime = parseServerDate(note.created_at).getTime();
+        const updatedTime = parseServerDate(note.updated_at).getTime();
+        const wasEdited = Number.isFinite(createdTime) && Number.isFinite(updatedTime)
+            && Math.abs(updatedTime - createdTime) > 1000;
+
         const dates = `
             <div class="note-dates">
                 <span>Создана: ${formatDate(note.created_at)}</span>
-                <span>Изменена: ${formatDate(note.updated_at)}</span>
+                ${wasEdited ? `<span>Изменена: ${formatDate(note.updated_at)}</span>` : ""}
             </div>`;
 
         if (note.trashed) {
@@ -879,51 +929,163 @@ if (page === "dashboard" && getToken()) {
     makeDropTarget(trashLink, trashLink);
 
     // --- Старт ---
-    // Адрес может содержать ?view=favorites|trash или ?category=Учёба
-    const params = new URLSearchParams(window.location.search);
-    const startCategory = params.get("category");
-    if (startCategory && [...categoryFilter.options].some(option => option.value === startCategory)) {
-        categoryFilter.value = startCategory;
-    }
-    currentView = VIEWS[params.get("view")] ? params.get("view") : "all";
+    // Сначала загружаем категории, затем применяем параметры страницы и загружаем заметки.
+    loadCategories().then(() => {
+        const params = new URLSearchParams(window.location.search);
+        const startCategory = params.get("category");
 
-    loadNotes();
+        if (startCategory && [...categoryFilter.options].some(option => option.value === startCategory)) {
+            categoryFilter.value = startCategory;
+        }
+
+        currentView = VIEWS[params.get("view")] ? params.get("view") : "all";
+        loadNotes();
+    });
 }
 
 /* ---------- 5. Категории (categories.html) ---------- */
 
 if (page === "categories" && getToken()) {
     const grid = document.querySelector("#category-page-grid");
+    const addButton = document.querySelector("#add-category-btn");
+    const formContainer = document.querySelector("#category-form-container");
+    const form = document.querySelector("#category-form");
+    const nameInput = document.querySelector("#category-name");
+    const descriptionInput = document.querySelector("#category-description");
+    const cancelButton = document.querySelector("#cancel-category-btn");
+    const message = document.querySelector("#category-form-message");
 
-    const categories = [
+    const standardCategories = [
         { name: "Учёба", description: "Конспекты, задания и подготовка к занятиям." },
         { name: "Работа", description: "Рабочие задачи, проекты и планы." },
         { name: "Личное", description: "Личные записи и повседневные дела." },
         { name: "Идеи", description: "Мысли и задумки для будущих проектов." }
     ];
 
+    let categories = [];
+
+    addButton.addEventListener("click", () => {
+        formContainer.hidden = false;
+        nameInput.focus();
+    });
+
+    cancelButton.addEventListener("click", () => {
+        form.reset();
+        formContainer.hidden = true;
+        showMessage(message, "");
+    });
+
     async function renderCategories() {
         try {
-            const notes = await apiRequest("/notes/");
-            const active = notes.filter(note => !note.trashed); // заметки из корзины не считаем
+            const [serverCategories, notes] = await Promise.all([
+                apiRequest("/categories/"),
+                apiRequest("/notes/")
+            ]);
+
+            categories = serverCategories;
+            const activeNotes = notes.filter(note => !note.trashed);
 
             grid.innerHTML = categories.map(category => {
-                const count = active.filter(note => note.category === category.name).length;
+                const count = activeNotes.filter(
+                    note => note.category === category.name
+                ).length;
+
+                const isCustom = category.id !== null && category.id !== undefined;
+
                 return `
-                    <a class="category-card" href="dashboard.html?category=${encodeURIComponent(category.name)}">
-                        <span class="note-category" data-category="${category.name}">${category.name}</span>
-                        <h2>${category.name}</h2>
-                        <p>${category.description}</p>
-                        <span class="category-count">Заметок: ${count}</span>
-                    </a>`;
+                    <div class="category-card">
+                        <a href="dashboard.html?category=${encodeURIComponent(category.name)}">
+                            <span class="note-category"
+                                  data-category="${escapeHTML(category.name)}">
+                                ${escapeHTML(category.name)}
+                            </span>
+                            <h2>${escapeHTML(category.name)}</h2>
+                            <p>${escapeHTML(category.description || "")}</p>
+                            <span class="category-count">Заметок: ${count}</span>
+                        </a>
+                        ${isCustom ? `
+                            <button type="button"
+                                    class="secondary-btn delete-category-btn"
+                                    data-category-id="${category.id}"
+                                    data-category-name="${escapeHTML(category.name)}">
+                                Удалить
+                            </button>
+                        ` : ""}
+                    </div>
+                `;
             }).join("");
+
         } catch (error) {
-            grid.innerHTML = `<p class="error-message">Не удалось загрузить категории: ${escapeHTML(error.message)}</p>`;
+            grid.innerHTML = `
+                <p class="error-message">
+                    Не удалось загрузить категории: ${escapeHTML(error.message)}
+                </p>`;
         }
     }
 
+    form.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+        const description = descriptionInput.value.trim();
+
+        if (!name) {
+            showMessage(message, "Введите название категории.", "error");
+            return;
+        }
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        showMessage(message, "Сохраняем категорию...");
+
+        try {
+            await apiRequest("/categories/", {
+                method: "POST",
+                body: JSON.stringify({ name, description })
+            });
+
+            form.reset();
+            formContainer.hidden = true;
+            showMessage(message, "");
+            await renderCategories();
+
+        } catch (error) {
+            showMessage(message, error.message, "error");
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+
+    grid.addEventListener("click", async event => {
+        const button = event.target.closest(".delete-category-btn");
+        if (!button) return;
+
+        const categoryId = button.dataset.categoryId;
+        const categoryName = button.dataset.categoryName;
+
+        if (!confirm(
+            `Удалить категорию «${categoryName}»? Заметки этой категории будут перенесены в «Личное».`
+        )) {
+            return;
+        }
+
+        button.disabled = true;
+
+        try {
+            await apiRequest(`/categories/${categoryId}`, {
+                method: "DELETE"
+            });
+
+            await renderCategories();
+        } catch (error) {
+            alert("Не удалось удалить категорию: " + error.message);
+            button.disabled = false;
+        }
+    });
+
     renderCategories();
 }
+
 
 /* ---------- 6. Профиль (profile.html) ---------- */
 

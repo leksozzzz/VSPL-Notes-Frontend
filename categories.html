@@ -45,12 +45,48 @@
     </aside>
 
     <main class="main">
-        <header class="page-head">
-            <div>
-                <h1>Категории</h1>
-                <p>Выберите категорию, чтобы увидеть её заметки</p>
-            </div>
-        </header>
+       
+<header class="page-head">
+    <div>
+        <h1>Категории</h1>
+        <p>Выберите категорию, чтобы увидеть её заметки</p>
+    </div>
+
+    <button type="button" class="primary-btn" id="add-category-btn">
+        + Создать категорию
+    </button>
+</header>
+
+<div id="category-form-container" hidden>
+    <form id="category-form" class="category-form">
+        <label for="category-name">Название категории</label>
+        <input
+            type="text"
+            id="category-name"
+            name="name"
+            maxlength="80"
+            placeholder="Например, Программирование"
+            required
+        >
+
+        <label for="category-description">Описание (необязательно)</label>
+        <textarea
+            id="category-description"
+            name="description"
+            maxlength="200"
+            placeholder="Для чего нужна эта категория?"
+        ></textarea>
+
+        <div class="form-actions">
+            <button type="submit" class="primary-btn">Сохранить</button>
+            <button type="button" class="secondary-btn" id="cancel-category-btn">
+                Отмена
+            </button>
+        </div>
+        <p id="category-form-message" role="status"></p>
+    </form>
+</div>
+
 
         <section class="category-grid" id="category-page-grid">
             <p class="loading-message">Загружаем категории...</p>
