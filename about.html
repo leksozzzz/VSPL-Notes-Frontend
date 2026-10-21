@@ -11,52 +11,47 @@
 <div class="app">
     <aside class="sidebar">
         <a href="dashboard.html" class="logo" data-logo>
-            <span class="logo-icon">🌓</span> VSPL Notes
+            <span class="logo-icon">🌓</span>VSPL Notes
         </a>
 
         <nav class="sidebar-nav" aria-label="Основное меню">
             <a class="nav-link" href="dashboard.html" data-view="all">
-                <span>Мои заметки</span>
-                <span class="nav-count" id="count-all"></span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Мои заметки</span><span class="nav-count" id="count-all"></span>
             </a>
 
             <a class="nav-link" href="dashboard.html?view=favorites" data-view="favorites">
-                <span>Избранное</span>
-                <span class="nav-count" id="count-favorites"></span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2.5 14.9 8.9 22 9.6 16.7 14.3 18.2 21.3 12 17.7 5.8 21.3 7.3 14.3 2 9.6 9.1 8.9"/></svg><span>Избранное</span><span class="nav-count" id="count-favorites"></span>
             </a>
 
             <a class="nav-link" href="categories.html">
-                <span>Категории</span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Категории</span>
             </a>
 
             <a class="nav-link" href="dashboard.html?view=trash" data-view="trash">
-                <span>Корзина</span>
-                <span class="nav-count" id="count-trash"></span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6"/></svg><span>Корзина</span><span class="nav-count" id="count-trash"></span>
             </a>
+        </nav>
 
+        <div class="sidebar-bottom">
             <a class="nav-link" href="profile.html">
-                <span>Профиль</span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Профиль</span>
             </a>
 
             <a class="nav-link" href="about.html" aria-current="page">
-                <span>О нас</span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>О нас</span>
             </a>
-        </nav>
+        </div>
 
         <div class="sidebar-user">
             <div class="user-avatar" id="user-avatar">U</div>
             <span class="user-name" id="user-name-label">Пользователь</span>
 
-            <button type="button"
-                    class="logout-btn"
-                    data-logout
-                    title="Выйти"
-                    aria-label="Выйти">
-                ↪
+            <button type="button" class="logout-btn" data-logout title="Выйти" aria-label="Выйти">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M16 8l4 4-4 4M20 12H9"/></svg>
             </button>
         </div>
     </aside>
-
+    
     <main class="main">
         <header class="page-head">
             <div>
