@@ -329,8 +329,16 @@ textarea {
 
 .sidebar-nav {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 2px;
+}
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: auto;
 }
 
 .nav-link {
