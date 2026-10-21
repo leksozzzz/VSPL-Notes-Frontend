@@ -1171,3 +1171,97 @@ body.light-theme .note-card:hover {
         0 0 18px rgba(160, 145, 240, 0.10),
         inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
+
+
+
+/* Исправление кнопок на странице категорий */
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: 1px solid var(--accent);
+    border-radius: 9px;
+    background: var(--accent);
+    color: #17132e;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.primary-btn:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #17132e;
+}
+
+.secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface-2);
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.secondary-btn:hover {
+    border-color: var(--accent);
+}
+
+.category-card .btn-danger,
+.category-card button {
+    color: var(--danger);
+}
+
+.category-card .btn-danger:hover,
+.category-card button:hover {
+    background: var(--danger);
+    color: #fff;
+}
+
+.category-form {
+    max-width: 560px;
+    margin-bottom: 24px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+.category-form label {
+    display: block;
+    margin: 12px 0 6px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.category-form input,
+.category-form textarea {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.category-form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.category-form .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
